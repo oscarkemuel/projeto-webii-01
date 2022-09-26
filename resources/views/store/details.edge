@@ -39,16 +39,16 @@
           </a>
         </div>
 
-        <h1 class="title">-loja 001-</h1>
+        <h1 class="title">{{ store.name }}</h1>
 
         <div class="my-4">
           <h2>Localização</h2>
-          <p>Lagoa Nova, Natal/RN</p>
+          <p>{{ store.address }}</p>
         </div>
 
         <div class="my-4">
           <h2>Descrição</h2>
-          <textarea class="form-control" id="description" readonly>teste</textarea>
+          <textarea class="form-control" id="description" readonly>{{ store.description }}</textarea>
         </div>
 
         <div class="my-4">

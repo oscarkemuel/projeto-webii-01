@@ -42,20 +42,20 @@
         <h1 class="title">Cadastrar Loja</h1>
 
         <div class="mt-4">
-          <form>
+          <form action="{{ route('StoresController.create') }}" method="POST">
             <div class="mb-3">
               <label for="name" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Loja 001">
+              <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Loja 001" name="name">
             </div>
 
             <div class="mb-3">
               <label for="description" class="form-label">Descrição</label>
-              <textarea class="form-control" placeholder="Descrição da loja" id="description"></textarea>
+              <textarea class="form-control" placeholder="Descrição da loja" id="description" name="description"></textarea>
             </div>
 
             <div class="mb-3">
-              <label for="location" class="form-label">Localização</label>
-              <input type="text" class="form-control" id="location" aria-describedby="locationHelp" placeholder="Lagoa Nova - Natal/RN">
+              <label for="address" class="form-label">Endereço</label>
+              <input type="text" class="form-control" id="address" aria-describedby="addressHelp" placeholder="Lagoa Nova - Natal/RN" name="address">
             </div>
 
             <button type="submit" class="btn btn-dark">Cadastrar</button>

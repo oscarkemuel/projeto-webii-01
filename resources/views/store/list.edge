@@ -44,65 +44,33 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Nome</th>
-              <th scope="col">Local</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Endereço</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Loja 01</td>
-              <td>Lagoa Nova, Natal</td>
-              <td>
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/details/1">
-                  <i class="bi bi-search"></i>
-                </a>
+            @each(store in stores)
+              <tr>
+                <th scope="row">{{store.id}}</th>
+                <td>{{store.name}}</td>
+                <td>{{store.description}}</td>
+                <td>{{store.address}}</td>
+                <td>
+                  <a type="button" class="btn btn-dark bg-dark" href="/loja/details/{{store.id}}">
+                    <i class="bi bi-search"></i>
+                  </a>
 
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/edit/1">
-                  <i class="bi bi-pencil-fill"></i>
-                </a>
+                  <a type="button" class="btn btn-dark bg-dark" href="/loja/edit/{{store.id}}">
+                    <i class="bi bi-pencil-fill"></i>
+                  </a>
 
-                <a type="button" class="btn btn-dark bg-dark">
-                  <i class="bi bi-trash-fill"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Loja 01</td>
-              <td>Lagoa Nova, Natal</td>
-              <td>
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/details/1">
-                  <i class="bi bi-search"></i>
-                </a>
-
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/edit/1">
-                  <i class="bi bi-pencil-fill"></i>
-                </a>
-
-                <a type="button" class="btn btn-dark bg-dark">
-                  <i class="bi bi-trash-fill"></i>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Loja 01</td>
-              <td>Lagoa Nova, Natal</td>
-              <td>
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/details/1">
-                  <i class="bi bi-search"></i>
-                </a>
-
-                <a type="button" class="btn btn-dark bg-dark" href="/loja/edit/1">
-                  <i class="bi bi-pencil-fill"></i>
-                </a>
-
-                <a type="button" class="btn btn-dark bg-dark">
-                  <i class="bi bi-trash-fill"></i>
-                </a>
-              </td>
-            </tr>
+                  <a type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </a>
+                </td>
+              </tr>
+            @end
           </tbody>
         </table>
     </main>
