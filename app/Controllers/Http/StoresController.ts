@@ -46,4 +46,13 @@ export default class StoresController {
     session.flash('success', 'Loja atualizada com sucesso!')
     return response.redirect().toRoute('/loja')
   }
+
+  public async delete({ request, response, session }: HttpContextContract) {
+    const id = request.param('id')
+
+    await this.storeService.deleteStore(id)
+
+    session.flash('success', 'Loja excluída com sucesso!')
+    return response.redirect().toRoute('/loja')
+  }
 }

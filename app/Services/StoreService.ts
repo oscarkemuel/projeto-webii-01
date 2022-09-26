@@ -25,6 +25,12 @@ class StoreService {
     return store
   }
 
+  public async deleteStore(id: number) {
+    const store = await Store.findOrFail(id)
+
+    await store.delete()
+  }
+
   public async getStoreById(id: number) {
     const store = await Store.findOrFail(id)
 
@@ -32,7 +38,7 @@ class StoreService {
   }
 
   public async getAllStores() {
-    const stores = await Store.all()
+    const stores = await Store.query().orderBy('created_at', 'asc')
 
     return stores
   }

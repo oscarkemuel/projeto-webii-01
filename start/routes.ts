@@ -9,5 +9,5 @@ Route.group(() => {
   Route.post('/form', 'StoresController.create')
   Route.get('/edit/:id', 'StoresController.edit')
   Route.post('/edit/:id', 'StoresController.update')
-  // Route.get('/delete/:id', 'StoresController.delete')
+  Route.get('/delete/:id', 'StoresController.delete')
 }).prefix('/loja')
