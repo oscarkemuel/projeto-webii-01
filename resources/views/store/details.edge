@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoreManager - Lojas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">StoreManager</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/loja">Lojas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"  href="/vendedores">Vendedores</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-fluid p-4">
+        <div class="mb-2">
+          <a type="button" class="btn btn-dark" href="/loja">
+            <i class="bi bi-arrow-left"></i>
+          </a>
+        </div>
+
+        <h1 class="title">-loja 001-</h1>
+
+        <div class="my-4">
+          <h2>Localização</h2>
+          <p>Lagoa Nova, Natal/RN</p>
+        </div>
+
+        <div class="my-4">
+          <h2>Descrição</h2>
+          <textarea class="form-control" id="description" readonly>teste</textarea>
+        </div>
+
+        <div class="my-4">
+          <h2>Vendas</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Vendedor</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Carro</td>
+                <td>Fernando</td>
+                <td>R$ 3000,00</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Carro</td>
+                <td>Humberto</td>
+                <td>R$ 3000,00</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Moto</td>
+                <td>João</td>
+                <td>R$ 3000,00</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="my-4">
+          <h2>Vendedores</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Local</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Fernando</td>
+                <td>Lagoa Nova, Natal</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Humberto</td>
+                <td>Lagoa Nova, Natal</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>João</td>
+                <td>Lagoa Nova, Natal</td>
+                <td>
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-search"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+
+                  <button type="button" class="btn btn-dark bg-dark">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+html, body {
+  background-color: #F7F8FA;
+  font-family: 'Poppins', sans-serif;
+  color: #46444c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
