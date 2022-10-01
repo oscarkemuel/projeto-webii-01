@@ -21,10 +21,10 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/loja">Lojas</a>
+                <a class="nav-link" href="/loja">Lojas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="/usuario">Vendedores</a>
+                <a class="nav-link active" aria-current="page" href="/usuario">Vendedores</a>
               </li>
             </ul>
           </div>
@@ -33,47 +33,19 @@
     </header>
 
     <main class="container-fluid p-4">
-        <h1 class="title">Lojas</h1>
-
-        <div class="mt-4 mb-2">
-          <a type="button" class="btn btn-dark" href="/loja/form">Adicionar Loja</a>
+        <div class="mb-2">
+          <a type="button" class="btn btn-dark" href="/usuario">
+            <i class="bi bi-arrow-left"></i>
+          </a>
         </div>
 
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Descrição</th>
-              <th scope="col">Endereço</th>
-              <th scope="col">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            @each(store in stores)
-              <tr>
-                <th scope="row">{{store.id}}</th>
-                <td>{{store.name}}</td>
-                <td>{{store.description}}</td>
-                <td>{{store.address}}</td>
-                <td>
-                  <a type="button" class="btn btn-dark bg-dark" href="/loja/details/{{store.id}}">
-                    <i class="bi bi-search"></i>
-                  </a>
-
-                  <a type="button" class="btn btn-dark bg-dark" href="/loja/edit/{{store.id}}">
-                    <i class="bi bi-pencil-fill"></i>
-                  </a>
-
-                  <a type="button" class="btn btn-dark bg-dark" href="/loja/delete/{{store.id}}">
-                    <i class="bi bi-trash-fill"></i>
-                  </a>
-                </td>
-              </tr>
-            @end
-          </tbody>
-        </table>
-    </main>
+        <div class="my-4">
+          <h2>Informações de usuário</h2>
+          <p>Nome: {{ user.name }}</p>
+          <p>Email: {{ user.email }}</p>
+          <p>Telefone: {{ user.phone }}</p>
+        </div>
+      </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>

@@ -24,7 +24,7 @@
                 <a class="nav-link active" aria-current="page" href="/loja">Lojas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="/vendedores">Vendedores</a>
+                <a class="nav-link"  href="/usuario">Vendedores</a>
               </li>
             </ul>
           </div>
@@ -39,16 +39,10 @@
           </a>
         </div>
 
-        <h1 class="title">{{ store.name }}</h1>
-
         <div class="my-4">
-          <h2>Localização</h2>
-          <p>{{ store.address }}</p>
-        </div>
-
-        <div class="my-4">
-          <h2>Descrição</h2>
-          <textarea class="form-control" id="description" readonly>{{ store.description }}</textarea>
+          <h2>Informações de loja</h2>
+          <p>Endereço: {{ store.address }}</p>
+          <p>Descrição: {{ store.description }}</p>
         </div>
 
         <div class="my-4">

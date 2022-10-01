@@ -11,3 +11,13 @@ Route.group(() => {
   Route.post('/edit/:id', 'StoresController.update')
   Route.get('/delete/:id', 'StoresController.delete')
 }).prefix('/loja')
+
+Route.group(() => {
+  Route.get('/', 'UsersController.showList')
+  Route.get('/details/:id', 'UsersController.details')
+  Route.get('/form', 'UsersController.showForm')
+  Route.post('/form', 'UsersController.create')
+  Route.get('/edit/:id', 'UsersController.showEditForm')
+  Route.post('/edit/:id', 'UsersController.update')
+  Route.get('/delete/:id', 'UsersController.delete')
+}).prefix('/usuario')
