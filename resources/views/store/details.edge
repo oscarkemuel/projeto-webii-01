@@ -24,7 +24,7 @@
                 <a class="nav-link active" aria-current="page" href="/loja">Lojas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="/usuario">Vendedores</a>
+                <a class="nav-link"  href="/usuario">Usuários</a>
               </li>
             </ul>
           </div>
@@ -41,12 +41,63 @@
 
         <div class="my-4">
           <h2>Informações de loja</h2>
-          <p>Endereço: {{ store.address }}</p>
-          <p>Descrição: {{ store.description }}</p>
+          <p>Nome: <b>{{ store.name }}</b></p>
+          <p>Endereço: <b>{{ store.address }}</b></p>
+          <p>Descrição: <b>{{ store.description }}</b></p>
         </div>
 
         <div class="my-4">
-          <h2>Vendas</h2>
+          <div class="mt-4 mb-2 d-flex justify-content-between">
+            <h2>Produtos</h2>
+            <div>
+              <a type="button" class="btn btn-dark" href="/produto/form/loja/{{store.id}}">Adicionar Produto</a>
+            </div>
+          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Estoque</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              @each(product in products)
+                <tr>
+                  <td><b>{{ product.quantity }}</b></td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.description }}</td>
+                  <td>{{ product.price }}</td>
+                  <td>{{ product.category }}</td>
+                  <td>
+                    <a type="button" class="btn btn-dark bg-dark" href="/produto/details/{{product.id}}">
+                      <i class="bi bi-search"></i>
+                    </a>
+
+                    <a type="button" class="btn btn-dark bg-dark" href="/produto/edit/{{product.id}}">
+                      <i class="bi bi-pencil-fill"></i>
+                    </a>
+
+                    <a type="button" class="btn btn-dark bg-dark" href="/produto/delete/{{product.id}}">
+                      <i class="bi bi-trash-fill"></i>
+                    </a>
+                  </td>
+                </tr>
+              @end
+            </tbody>
+          </table>
+        </div>
+
+        {{--  <div class="my-4">
+          <div class="mt-4 mb-2 d-flex justify-content-between">
+            <h2>Vendas</h2>
+            <div>
+              <a type="button" class="btn btn-dark" href="/loja/form">Adicionar Loja</a>
+            </div>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -113,7 +164,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div>  --}}
 
         <div class="my-4">
           <h2>Vendedores</h2>

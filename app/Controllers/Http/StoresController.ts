@@ -7,8 +7,10 @@ export default class StoresController {
   public async details({ view, request }: HttpContextContract) {
     const id = request.param('id')
     const store = await this.storeService.getStoreById(id)
+    const products = await this.storeService.getProductByStoreId(id)
+    // console.log(products)
 
-    return view.render('store/details', { store })
+    return view.render('store/details', { store, products })
   }
 
   public async list({ view }: HttpContextContract) {

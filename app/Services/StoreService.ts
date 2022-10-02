@@ -42,6 +42,16 @@ class StoreService {
 
     return stores
   }
+
+  public async getProductByStoreId(id: number) {
+    const store = await Store.findOrFail(id)
+
+    await store.load('products')
+
+    const products = store.products
+
+    return products
+  }
 }
 
 export default StoreService
