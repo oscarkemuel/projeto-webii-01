@@ -10,6 +10,9 @@ Route.group(() => {
   Route.get('/edit/:id', 'StoresController.edit')
   Route.post('/edit/:id', 'StoresController.update')
   Route.get('/delete/:id', 'StoresController.delete')
+  Route.get('/add-seller/:id', 'StoresController.showAddSellerForm')
+  Route.post('/add-seller/:id', 'StoresController.addSeller')
+  Route.get('/:id/remove-seller/:sellerId', 'StoresController.removeSeller')
 }).prefix('/loja')
 
 Route.group(() => {
@@ -23,7 +26,6 @@ Route.group(() => {
 }).prefix('/usuario')
 
 Route.group(() => {
-  Route.get('/', 'ProductsController.showList')
   Route.get('/details/:id', 'ProductsController.details')
   Route.get('/form/loja/:id', 'ProductsController.showForm')
   Route.post('/form', 'ProductsController.create')

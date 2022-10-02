@@ -91,147 +91,37 @@
           </table>
         </div>
 
-        {{--  <div class="my-4">
+        <div class="my-4">
           <div class="mt-4 mb-2 d-flex justify-content-between">
-            <h2>Vendas</h2>
+            <h2>Vendedores</h2>
             <div>
-              <a type="button" class="btn btn-dark" href="/loja/form">Adicionar Loja</a>
+              <a type="button" class="btn btn-dark" href="/loja/add-seller/{{store.id}}">Adicionar Vendedor</a>
             </div>
           </div>
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Vendedor</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Carro</td>
-                <td>Fernando</td>
-                <td>R$ 3000,00</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Carro</td>
-                <td>Humberto</td>
-                <td>R$ 3000,00</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Moto</td>
-                <td>João</td>
-                <td>R$ 3000,00</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>  --}}
-
-        <div class="my-4">
-          <h2>Vendedores</h2>
-          <table class="table table-striped">
-            <thead>
-              <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Local</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Email</th>
                 <th scope="col">Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Fernando</td>
-                <td>Lagoa Nova, Natal</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Humberto</td>
-                <td>Lagoa Nova, Natal</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>João</td>
-                <td>Lagoa Nova, Natal</td>
-                <td>
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-search"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-pencil-fill"></i>
-                  </button>
-
-                  <button type="button" class="btn btn-dark bg-dark">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
-                </td>
-              </tr>
+              @each(seller in sellers)
+                <tr>
+                  <th scope="row">{{seller.id}}</th>
+                  <td>{{seller.user.name}}</td>
+                  <td>{{seller.user.phone}}</td>
+                  <td>{{seller.user.email}}</td>
+                  <td>
+                    <a type="button" class="btn btn-dark bg-dark" href="/loja/{{store.id}}/remove-seller/{{seller.id}}">
+                      <i class="bi bi-trash-fill"></i>
+                    </a>
+                  </td>
+                </tr>
+              @end
             </tbody>
           </table>
         </div>

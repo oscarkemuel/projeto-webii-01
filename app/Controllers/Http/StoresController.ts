@@ -1,16 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import StoreService from 'App/Services/StoreService'
+import UserService from 'App/Services/UserService'
 
 export default class StoresController {
   public storeService = new StoreService()
+  public userService = new UserService()
 
   public async details({ view, request }: HttpContextContract) {
     const id = request.param('id')
     const store = await this.storeService.getStoreById(id)
     const products = await this.storeService.getProductByStoreId(id)
-    // console.log(products)
+    await store.load('sellers')
+    await Promise.all(store.sellers.map(async (seller) => await seller.load('user')))
 
-    return view.render('store/details', { store, products })
+    const sellers = store.sellers
+
+    return view.render('store/details', { store, products, sellers })
   }
 
   public async list({ view }: HttpContextContract) {
@@ -56,5 +61,33 @@ export default class StoresController {
 
     session.flash('success', 'Loja excluída com sucesso!')
     return response.redirect().toRoute('/loja')
+  }
+
+  public async showAddSellerForm({ view, request }: HttpContextContract) {
+    const id = request.param('id')
+    const store = await this.storeService.getStoreById(id)
+    const users = await this.userService.getAllUsers()
+
+    return view.render('store/seller/form', { store, users })
+  }
+
+  public async addSeller({ request, response, session }: HttpContextContract) {
+    const storeId = request.param('id')
+    const data = request.only(['userId'])
+
+    await this.storeService.addSeller(storeId, data.userId)
+
+    session.flash('success', 'Vendedor adicionado com sucesso!')
+    return response.redirect(`/loja/details/${storeId}`)
+  }
+
+  public async removeSeller({ request, response, session }: HttpContextContract) {
+    const storeId = request.param('id')
+    const sellerId = request.param('sellerId')
+
+    await this.storeService.removeSeller(storeId, sellerId)
+
+    session.flash('success', 'Vendedor excluído com sucesso!')
+    return response.redirect(`/loja/details/${storeId}`)
   }
 }

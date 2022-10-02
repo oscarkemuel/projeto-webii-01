@@ -1,3 +1,4 @@
+import Seller from 'App/Models/Seller'
 import Store from 'App/Models/Store'
 
 interface StoreDataPayload {
@@ -51,6 +52,22 @@ class StoreService {
     const products = store.products
 
     return products
+  }
+
+  public async addSeller(storeId: number, userId: number) {
+    const store = await Store.findOrFail(storeId)
+
+    const seller = await Seller.firstOrNew({
+      userId: userId,
+    })
+
+    await store.related('sellers').save(seller)
+  }
+
+  public async removeSeller(storeId: number, sellerId: number) {
+    const store = await Store.findOrFail(storeId)
+
+    await store.related('sellers').detach([sellerId])
   }
 }
 
