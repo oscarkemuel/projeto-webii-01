@@ -1,3 +1,5 @@
+import Product from 'App/Models/Product'
+import Sale from 'App/Models/Sale'
 import Seller from 'App/Models/Seller'
 import Store from 'App/Models/Store'
 
@@ -5,6 +7,12 @@ interface StoreDataPayload {
   name: string
   description: string
   address: string
+}
+
+interface NewSaleData {
+  productId: number
+  sellerId: number
+  quantity: number
 }
 
 class StoreService {
@@ -34,6 +42,26 @@ class StoreService {
 
   public async getStoreById(id: number) {
     const store = await Store.findOrFail(id)
+
+    return store
+  }
+
+  public async getStoreByIdWithSellersAndProducts(id: number) {
+    const store = await Store.findOrFail(id)
+
+    await store.load('sellers')
+    await Promise.all(store.sellers.map(async (seller) => await seller.load('user')))
+
+    await store.load('products')
+
+    await store.load('sales')
+    await Promise.all(
+      store.sales.map(async (sale) => {
+        await sale.load('seller')
+        await sale.seller.load('user')
+        await sale.load('product')
+      })
+    )
 
     return store
   }
@@ -68,6 +96,28 @@ class StoreService {
     const store = await Store.findOrFail(storeId)
 
     await store.related('sellers').detach([sellerId])
+  }
+
+  public async addNewSale(storeId: number, data: NewSaleData) {
+    const product = await Product.findOrFail(data.productId)
+    const price = product.price * data.quantity
+
+    if (product.quantity < data.quantity) {
+      throw new Error('Quantidade de produtos insuficiente')
+    }
+
+    const sale = await Sale.create({
+      productId: data.productId,
+      sellerId: data.sellerId,
+      storeId: storeId,
+      quantity: data.quantity,
+      price,
+    })
+
+    product.quantity -= data.quantity
+    await product.save()
+
+    return sale
   }
 }
 

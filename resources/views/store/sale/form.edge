@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StoreManager - Vendedor</title>
+    <title>StoreManager - Venda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     @entryPointStyles('app')
@@ -39,18 +39,31 @@
           </button>
         </div>
 
-        <h1 class="title">Cadastrar Vendedor na loja <br> <b>{{store.name}}</b></h1>
+        <h1 class="title">Cadastrar Venda na loja <br> <b>{{store.name}}</b></h1>
 
         <div class="mt-4">
-          <form action="{{ route('StoresController.addSeller', { id: store.id }) }}" method="POST">
+          <form action="{{ route('StoresController.addNewSale', { id: store.id }) }}" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Escolha o produto:</label>
+
+              <select name="productId" id="productId" required>
+                <option></option>
+                  @each(product in store.products)
+                    <option value="{{product.id}}">{{product.quantity}} - {{product.name}}</option>
+                  @end
+              </select>
+
+              <input type="number" name="quantity" id="quantity" placeholder="Quantidade" required  />
+            </div>
+
             <div class="mb-3">
               <label for="name" class="form-label">Escolha o vendedor:</label>
 
-              <select name="userId" id="userId" required>
+              <select name="sellerId" id="sellerId" required>
                 <option></option>
-                  @each(user in users)
-                  <option value="{{user.id}}">{{user.name}} - {{user.email}}</option>
-                @end
+                  @each(seller in store.sellers)
+                    <option value="{{seller.id}}">{{seller.user.name}} - {{seller.user.email}}</option>
+                  @end
               </select>
             </div>
 

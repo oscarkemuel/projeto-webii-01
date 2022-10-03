@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StoreManager - Vendedor</title>
+    <title>StoreManager - Venda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     @entryPointStyles('app')
@@ -39,24 +39,7 @@
           </button>
         </div>
 
-        <h1 class="title">Cadastrar Vendedor na loja <br> <b>{{store.name}}</b></h1>
-
-        <div class="mt-4">
-          <form action="{{ route('StoresController.addSeller', { id: store.id }) }}" method="POST">
-            <div class="mb-3">
-              <label for="name" class="form-label">Escolha o vendedor:</label>
-
-              <select name="userId" id="userId" required>
-                <option></option>
-                  @each(user in users)
-                  <option value="{{user.id}}">{{user.name}} - {{user.email}}</option>
-                @end
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-dark">Adicionar</button>
-          </form>
-        </div>
+        <h1 class="title text-danger">Atenção!! Quantidade de produtos insuficiente!!</h1>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

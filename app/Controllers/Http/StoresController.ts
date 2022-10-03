@@ -8,14 +8,9 @@ export default class StoresController {
 
   public async details({ view, request }: HttpContextContract) {
     const id = request.param('id')
-    const store = await this.storeService.getStoreById(id)
-    const products = await this.storeService.getProductByStoreId(id)
-    await store.load('sellers')
-    await Promise.all(store.sellers.map(async (seller) => await seller.load('user')))
+    const store = await this.storeService.getStoreByIdWithSellersAndProducts(id)
 
-    const sellers = store.sellers
-
-    return view.render('store/details', { store, products, sellers })
+    return view.render('store/details', { store })
   }
 
   public async list({ view }: HttpContextContract) {
@@ -88,6 +83,27 @@ export default class StoresController {
     await this.storeService.removeSeller(storeId, sellerId)
 
     session.flash('success', 'Vendedor excluído com sucesso!')
+    return response.redirect(`/loja/details/${storeId}`)
+  }
+
+  public async showAddSaleForm({ view, request }: HttpContextContract) {
+    const id = request.param('id')
+    const store = await this.storeService.getStoreByIdWithSellersAndProducts(id)
+
+    return view.render('store/sale/form', { store })
+  }
+
+  public async addNewSale({ request, response, session }: HttpContextContract) {
+    const storeId = request.param('id')
+    const data = request.only(['productId', 'sellerId', 'quantity'])
+
+    try {
+      await this.storeService.addNewSale(storeId, data)
+    } catch (error) {
+      return response.redirect(`/loja/quantity-error`)
+    }
+
+    session.flash('success', 'Venda adicionada com sucesso!')
     return response.redirect(`/loja/details/${storeId}`)
   }
 }

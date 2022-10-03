@@ -13,6 +13,9 @@ Route.group(() => {
   Route.get('/add-seller/:id', 'StoresController.showAddSellerForm')
   Route.post('/add-seller/:id', 'StoresController.addSeller')
   Route.get('/:id/remove-seller/:sellerId', 'StoresController.removeSeller')
+  Route.get('/add-sale/:id', 'StoresController.showAddSaleForm')
+  Route.post('/add-sale/:id', 'StoresController.addNewSale')
+  Route.get('/quantity-error', ({ view }) => view.render('store/sale/quantityError'))
 }).prefix('/loja')
 
 Route.group(() => {

@@ -61,17 +61,33 @@
                 <th scope="col">Descrição</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Criado em</th>
                 <th scope="col">Ações</th>
               </tr>
             </thead>
             <tbody>
-              @each(product in products)
+              @each(product in store.products)
                 <tr>
-                  <td><b>{{ product.quantity }}</b></td>
+                  @if(product.quantity === 0)
+                    <td class="text-danger">{{ product.quantity }}</td>
+                  @end
+
+                  @if(product.quantity > 0)
+                    <td>{{ product.quantity }}</td>
+                  @end
+
                   <td>{{ product.name }}</td>
                   <td>{{ product.description }}</td>
-                  <td>{{ product.price }}</td>
+                  <td>{{ Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(product.price) }}</td>
                   <td>{{ product.category }}</td>
+                  <td>
+                    {{ new Date(product.createdAt).toLocaleDateString('pt-BR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                      })
+                    }}
+                  </td>
                   <td>
                     <a type="button" class="btn btn-dark bg-dark" href="/produto/details/{{product.id}}">
                       <i class="bi bi-search"></i>
@@ -92,7 +108,7 @@
         </div>
 
         <div class="my-4">
-          <div class="mt-4 mb-2 d-flex justify-content-between">
+          <div class="mt-5 mb-2 d-flex justify-content-between">
             <h2>Vendedores</h2>
             <div>
               <a type="button" class="btn btn-dark" href="/loja/add-seller/{{store.id}}">Adicionar Vendedor</a>
@@ -109,7 +125,7 @@
               </tr>
             </thead>
             <tbody>
-              @each(seller in sellers)
+              @each(seller in store.sellers)
                 <tr>
                   <th scope="row">{{seller.id}}</th>
                   <td>{{seller.user.name}}</td>
@@ -119,6 +135,48 @@
                     <a type="button" class="btn btn-dark bg-dark" href="/loja/{{store.id}}/remove-seller/{{seller.id}}">
                       <i class="bi bi-trash-fill"></i>
                     </a>
+                  </td>
+                </tr>
+              @end
+            </tbody>
+          </table>
+        </div>
+
+        <div class="my-4">
+          <div class="mt-5 mb-2 d-flex justify-content-between">
+            <h2>Vendas</h2>
+            <div>
+              <a type="button" class="btn btn-dark" href="/loja/add-sale/{{store.id}}">Adicionar Venda</a>
+            </div>
+          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor total</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Vendedor</th>
+                <th scope="col">Vendido em</th>
+              </tr>
+            </thead>
+            <tbody>
+              @each(sale in store.sales)
+                <tr>
+                  <th scope="row">{{sale.id}}</th>
+                  <td>{{sale.product.name}}</td>
+                  <td>{{sale.quantity}}</td>
+                  <td>{{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(sale.price)}}</td>
+                  <td>{{sale.product.category}}</td>
+                  <td>{{sale.seller.user.name}}</td>
+                  <td>
+                    {{ new Date(sale.createdAt).toLocaleDateString('pt-BR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                      })
+                    }}
                   </td>
                 </tr>
               @end
